@@ -1,8 +1,7 @@
-from flask import Flask, request, redirect
+from flask import Flask, request
+import requests
 
 app = Flask(__name__)
-
-zip_code = -1
 
 
 @app.route('/')
@@ -14,13 +13,9 @@ def index():
 def city_entry():
     city_name = request.args.get('city_name')
     zip_code = find_zip_code(city_name)
-    redirect('/result')
-    return f"The zip code of the city: {city_name} is {zip_code}."
-
-
-@app.route('/result')
-def result():
-    return zip_code
+    weather_response = requests.get(f"http://weatherapp:120/weather?zip_code={zip_code}").text
+    weather = weather_response.split()[-1][:-1]
+    return f"The zip code of the city: {city_name} is {zip_code}. The weather in the area is: {weather}."
 
 
 def find_zip_code(city):
@@ -29,4 +24,4 @@ def find_zip_code(city):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=80, debug=True)

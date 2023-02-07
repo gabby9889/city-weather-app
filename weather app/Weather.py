@@ -7,7 +7,6 @@ app = Flask(__name__)
 def index():
     return '<h1>Main Page</h1>'
 
-
 @app.route('/weather')
 def weather_entry():
     zip_code = int(request.args.get('zip_code'))
@@ -20,4 +19,4 @@ def find_weather(zip_code):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=120)
