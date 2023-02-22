@@ -45,4 +45,27 @@ The code takes the city name as input from the user and calls the get_weather fu
 
 <img width="892" alt="Screen Shot 2023-02-01 at 10 35 58 PM" src="https://user-images.githubusercontent.com/116316971/216249889-1944570b-19e1-4cb9-8678-4d76b22beff9.png">
 
+### Allow two microservices communicate with each other
+create a network
+```bash
+docker networl create mynetwork
+```
+run zipcodeapp
+```bash
+docker run -d --name zipcodeapp --network mynetwork -p 80:80 zipcodeimage
+```
+
+run weatherapp
+```bash
+docker run -d --name weatherapp --network mynetwork weatherimage
+```
+<img width="994" alt="Screen Shot 2023-02-21 at 6 47 42 PM" src="https://user-images.githubusercontent.com/116316971/220508443-9864c7dd-135b-4864-866b-e4f995eb4b1b.png">
+
+<img width="989" alt="Screen Shot 2023-02-21 at 6 47 24 PM" src="https://user-images.githubusercontent.com/116316971/220508404-9ffb6a1c-a1de-405d-9a09-6a2c16f37dbb.png">
+
+#### Result![3701677043132_ pic](https://user-images.githubusercontent.com/116316971/220529646-b46c771c-04be-47d5-ad1c-5707d464f273.jpg)
+
+
+
+
 
